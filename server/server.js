@@ -33,17 +33,32 @@ app.get("/new", (req, res) => {
 });
 
 app.post("/new", async (req, res) => {
+  try {
     const title = req.body.title;
     const body = req.body.body;
     const creator_name = req.body.creator_name;
     const date_created = new Date();
     
-    await db.query("INSERT INTO blogs_test (creator_name, title, body, date_created) VALUES ($1, $2, $3, $4)",
+    const newTask = await pool.query("INSERT INTO tasks (creator_name, title, body, date_created) VALUES ($1, $2, $3, $4)",
         [creator_name, title, body, date_created]);
-        blogPosts = result.rows;
-        
+        res.json(newTask.rows[0]);
+    } catch (err) {
+      console.error(err.message);
+    }
         res.redirect("/");
     });
+
+app.delete("/:id", async (req,res) => {
+  try {
+    const { id } = req.params;
+    const deleteTask = await pool.query("DELETE FROM tasks WHERE task_id = $1", [
+      id
+    ]);
+    res.json("Task was deleted!")
+  } catch (err) {
+    console.log(err.message);
+  }
+  });
 
 app.listen(port, () => {
 console.log(`Server is running on http://localhost:${port}`);

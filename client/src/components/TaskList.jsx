@@ -25,24 +25,30 @@ function TaskList() {
 
 return (
 <div className="container">
-    <h1>Get Stuff Done</h1>
-    <a id="newTaskBtn" href="/new">New Task</a>
+    {/*<h1>Get Stuff Done</h1>*/}
+    <form>
     <ul id="taskList">
       {tasks.map(task => (
+        
           <li>
             <h2>
               {task.title}
             </h2>
-          <small>
-              {task.date_created} 
-          </small>
+         
           <p>
               {task.body}
           </p>
-          <small>By:{task.creator_name}</small>
+          <small>
+            By:{task.creator_name}
+          </small>
+          <small>
+            Date:{task.date_created} 
+          </small>
       </li>
+      
     ))}  
     </ul>
+    </form>
 </div>
 )};
 
