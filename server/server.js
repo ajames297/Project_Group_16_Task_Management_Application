@@ -29,23 +29,22 @@ app.get("/", async (req, res) => {
 
 // Route to render the edit page
 //app.get("/new", (req, res) => {
-//  res.render("modify.ejs");
+  //res.render("modify.ejs");
 //});
 
 app.post("/new", async (req, res) => {
   try {
-  //  const title = req.body.title;
-    const body = req.body.body;
-  //  const creator_name = req.body.creator_name;
+    const task = req.body.newTask;
     const date_created = new Date();
-    
-    const newTask = await pool.query("INSERT INTO tasks (body, date_created) VALUES ($1, $2)",
-        [body, date_created]);
-       res.json(newTask.rows);
+    console.log(task);
+    await pool.query("INSERT INTO tasks (body, date_created) VALUES ($1, $2)",
+        [task, date_created]);
+        //res.json(updateTask.rows[0]);
     } catch (err) {
       console.error(err.message);
     }
-       // res.redirect("/");
+    res.redirect("/");
+    
     });
 
 app.delete("/:id", async (req,res) => {

@@ -31,9 +31,9 @@ return (
       {tasks.map(task => (
         
           <li>
-            <h2>
+            {/*<h2>
               {task.title}
-            </h2>
+            </h2>*/}
          
           <p>
               {task.body}

@@ -2,9 +2,7 @@ import React, {useState} from "react";
 import axios from "axios";
 
 function InputTask() {
-    const [task, setTask] = useState({
-      body: "",
-    });
+    const [task, setTask] = useState([]);
 
     function handleChange(event) {
       console.log(event.target.value);
@@ -13,12 +11,19 @@ function InputTask() {
 
 //these can be found in the Week 9 "6. React Forms"
     const handleClick = async (event) => {
+
       event.preventDefault();
       //prevents the default Next behavior of the event
       //in this case it prevents the <form> from refreshing the page
-       try {
-           const response = await axios.post("http://localhost:5000/new", {task});
-      console.log(response.data)
+      console.log(task);
+
+      try {
+        const name = {task};
+        console.log(name.task);
+        const newTask = name.task;
+        console.log(newTask);
+      await axios.post("http://localhost:5000/new", {newTask});
+      
        } catch (error) {
         console.error("Failed to make request:", error.message);
         }
@@ -31,7 +36,7 @@ function InputTask() {
                 onChange={handleChange}
                 type="text"
                 placeholder="Input Task"
-                
+                value={task}
                 />
                 </div>
                 <button  type="submit">Add Task</button>
