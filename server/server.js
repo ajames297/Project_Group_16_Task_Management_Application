@@ -12,7 +12,7 @@ const pool = new pg.Pool({
   user: "postgres",
   host: "localhost",
   database: "TasksDB",
-  password: "password",
+  password: "r3incarn@t3",
   port: 5432,
 });
 
@@ -28,24 +28,24 @@ app.get("/", async (req, res) => {
   });
 
 // Route to render the edit page
-app.get("/new", (req, res) => {
-  res.render("modify.ejs");
-});
+//app.get("/new", (req, res) => {
+//  res.render("modify.ejs");
+//});
 
 app.post("/new", async (req, res) => {
   try {
-    const title = req.body.title;
+  //  const title = req.body.title;
     const body = req.body.body;
-    const creator_name = req.body.creator_name;
+  //  const creator_name = req.body.creator_name;
     const date_created = new Date();
     
-    const newTask = await pool.query("INSERT INTO tasks (creator_name, title, body, date_created) VALUES ($1, $2, $3, $4)",
-        [creator_name, title, body, date_created]);
-        res.json(newTask.rows[0]);
+    const newTask = await pool.query("INSERT INTO tasks (body, date_created) VALUES ($1, $2)",
+        [body, date_created]);
+       res.json(newTask.rows);
     } catch (err) {
       console.error(err.message);
     }
-        res.redirect("/");
+       // res.redirect("/");
     });
 
 app.delete("/:id", async (req,res) => {
