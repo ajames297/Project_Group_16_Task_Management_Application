@@ -43,7 +43,7 @@ app.post("/new", async (req, res) => {
     } catch (err) {
       console.error(err.message);
     }
-    res.redirect("/");
+    //res.redirect("/");
     
     });
 

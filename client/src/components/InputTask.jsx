@@ -1,7 +1,9 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
+//import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 
 function InputTask() {
+  //const navigate = useNavigate();
     const [task, setTask] = useState([]);
 
     function handleChange(event) {
@@ -22,8 +24,8 @@ function InputTask() {
         console.log(name.task);
         const newTask = name.task;
         console.log(newTask);
-      await axios.post("http://localhost:5000/new", {newTask});
-      
+      const response = await axios.post("http://localhost:5000/new", {newTask});
+     // navigate("/");
        } catch (error) {
         console.error("Failed to make request:", error.message);
         }
