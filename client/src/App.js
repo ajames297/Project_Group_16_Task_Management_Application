@@ -1,15 +1,13 @@
 import React from "react";
 import "./App.css";
-
-import TaskList from "./components/TaskList";
-import InputTask from "./components/InputTask";
-//import InputTask from "./components/InputTask";
+import LoginTasks from "./components/Login.jsx";
+import InputTask from "./components/InputTask.jsx";
+import TaskList from "./components/TaskList.jsx";
 
 function App() {
   return (
     <div>
-      <InputTask />
-      <TaskList />
+      <LoginTasks />
     </div>
   )
 }

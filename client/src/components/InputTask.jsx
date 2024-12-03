@@ -1,9 +1,7 @@
-import React, {useEffect, useState} from "react";
-//import { useNavigate } from 'react-router-dom';
+import React, {useState} from "react";
 import axios from "axios";
 
 function InputTask() {
-  //const navigate = useNavigate();
     const [task, setTask] = useState([]);
 
     function handleChange(event) {
@@ -21,11 +19,11 @@ function InputTask() {
 
       try {
         const name = {task};
-        console.log(name.task);
+        console.log({task});
         const newTask = name.task;
         console.log(newTask);
-      const response = await axios.post("http://localhost:5000/new", {newTask});
-     // navigate("/");
+      await axios.post("http://localhost:5000/new", {newTask});
+      
        } catch (error) {
         console.error("Failed to make request:", error.message);
         }
@@ -39,9 +37,10 @@ function InputTask() {
                 type="text"
                 placeholder="Input Task"
                 value={task}
+                //keeps a single source of truth
                 />
                 </div>
-                <button  type="submit">Add Task</button>
+                <button type="submit">Add Task</button>
               </form>
     )};
 

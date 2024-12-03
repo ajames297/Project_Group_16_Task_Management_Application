@@ -21,6 +21,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 
+//Login Route
+app.get("/login", async (req, res) => {
+    const result = await pool.query("SELECT * FROM users");
+    res.json(result.rows);
+  });
+
 // Route to render the main page
 app.get("/", async (req, res) => {
     const result = await pool.query("SELECT * FROM tasks");
@@ -43,7 +49,7 @@ app.post("/new", async (req, res) => {
     } catch (err) {
       console.error(err.message);
     }
-    //res.redirect("/");
+   // res.redirect("/");
     
     });
 
