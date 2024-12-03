@@ -33,11 +33,6 @@ app.get("/", async (req, res) => {
     res.json(result.rows);
   });
 
-// Route to render the edit page
-//app.get("/new", (req, res) => {
-  //res.render("modify.ejs");
-//});
-
 app.post("/new", async (req, res) => {
   try {
     const task = req.body.newTask;
@@ -45,12 +40,9 @@ app.post("/new", async (req, res) => {
     console.log(task);
     await pool.query("INSERT INTO tasks (body, date_created) VALUES ($1, $2)",
         [task, date_created]);
-        //res.json(updateTask.rows[0]);
     } catch (err) {
       console.error(err.message);
     }
-   // res.redirect("/");
-    
     });
 
 app.delete("/:id", async (req,res) => {
