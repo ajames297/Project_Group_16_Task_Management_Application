@@ -16,7 +16,7 @@ function App() {
 
   const handleTaskAdded = () => 
     {
-      setTaskAdded(!taskAdded);
+      setTaskAdded(taskAdded);
     };
 
   return (

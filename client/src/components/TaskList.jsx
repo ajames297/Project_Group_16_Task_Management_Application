@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState} from "react";
 import axios from "axios";
 
 function TaskList() {
@@ -20,17 +20,15 @@ function TaskList() {
   
   //makes a request everytime the component is rendered
   useEffect(() => {
-    getTasks();
+   getTasks();
   },[]);
 
 return (
 <div className="container">
-    {/*<h1>Get Stuff Done</h1>*/}
     <form>
     <ul id="taskList">
       {tasks.map(task => (
-        
-          <li>
+          <li key={task.task_id}>
             <h2>
               {task.title}
             </h2>
